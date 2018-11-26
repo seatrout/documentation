@@ -1,6 +1,9 @@
-=============
+============
+Introduction
+============
+
 Create an app
-=============
+-------------
 
 .. sectionauthor:: Bernhard Posselt <dev@bernhard-posselt.com>
 
@@ -23,5 +26,6 @@ The following directories have now been created:
 * **img/**: Contains icons and images
 * **js/**: Contains the JavaScript files
 * **lib/**: Contains the PHP class files of your app
+* **src/**: Contains the source code of your vue.js app
 * **templates/**: Contains the templates
 * **tests/**: Contains the tests

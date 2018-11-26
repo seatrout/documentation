@@ -2,6 +2,15 @@
 Request lifecycle
 =================
 
+.. toctree::
+   :maxdepth: 1
+
+   routes
+   middleware
+   containers
+   controllers
+   api
+
 .. sectionauthor:: Bernhard Posselt <dev@bernhard-posselt.com>, Morris Jobke <hey@morrisjobke.de>
 
 A typical HTTP request consists of the following:
@@ -30,30 +39,3 @@ Afterwards the following steps are performed:
 * Load and execute all the remaining apps' :doc:`init` files
 * Load and run all the routes in the apps' :file:`appinfo/routes.php`
 * Execute the router
-
-Router
-------
-
-The router parses the :doc:`app's routing files <routes>` (:file:`appinfo/routes.php`), inspects the request's **method** and **url**, queries the controller from the :doc:`container` and then passes control to the dispatcher. The dispatcher is responsible for running the hooks (called Middleware) before and after the controller, executing the controller method and rendering the output.
-
-Middleware
-----------
-
-A :doc:`Middleware <middleware>` is a convenient way to execute common tasks such as custom authentication before or after a :doc:`controller method <controllers>` is being run. You can execute code at the following locations:
-
-* before the call of the controller method
-* after the call of the controller method
-* after an exception is thrown (also if it is thrown from a middleware, e.g. if an authentication fails)
-* before the output is rendered
-
-Container
----------
-
-The :doc:`container` is the place where you define all of your classes and in particular all of your controllers. The container is responsible for assembling all of your objects (instantiating your classes) that should only have one single instance without relying on globals or singletons. If you want to know more about why you should use it and what the benefits are, read up on the topic in :doc:`container`.
-
-Controller
-----------
-
-The :doc:`controller <controllers>` contains the code that you actually want to run after a request has come in. Think of it like a callback that is executed if everything before went fine. 
-
-The controller returns a response which is then run through the middleware again (afterController and beforeOutput hooks are being run), HTTP headers are being set and the response's render method is being called and printed.
